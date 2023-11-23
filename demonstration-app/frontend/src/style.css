@@ -1,0 +1,20 @@
+.bounding-boxes-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Ensure bounding boxes don't interfere with video controls */
+    z-index: 1; /* Ensure the bounding box container is on top */
+  }
+  
+  .bounding-box {
+    position: absolute;
+    border: 2px solid red;
+    box-sizing: border-box;
+    z-index: 2;
+    color: red;
+    font-weight: bolder;
+    font-size: small;
+  }
+  
