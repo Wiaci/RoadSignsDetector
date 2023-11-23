@@ -15,7 +15,7 @@ const VideoPlayer = () => {
     if (videoRef.current.src) {
       const url = captureScreenshot() 
       var start = new Date().getTime();
-      const response = await axios.post("http://127.0.0.1:8000/process-frame", {
+      const response = await axios.post("http://localhost:8000/process-frame", {
           url: url
       })
       var end = new Date().getTime();
