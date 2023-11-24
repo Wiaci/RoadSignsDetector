@@ -42,7 +42,9 @@
 
 Для правильной работы наше приложение использует ряд фреймворков с открытым исходным кодом:
 [React](https://react.dev/reference/react)
+[Fastapi](https://fastapi.tiangolo.com/)
 [Onnxruntime](https://onnxruntime.ai/docs)
+[Uvicorn](https://www.uvicorn.org/)
 [torch](https://pytorch.org/docs)
 [ultralytics](https://github.com/ultralytics/ultralytics)
 
