@@ -1,14 +1,20 @@
 version: '3'
 services:
   backend:
-    build: 
+    build:
       context: ./backend
     ports:
       - "8000:8000"
     depends_on:
       - frontend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
   frontend:
-    build: 
+    build:
       context: ./frontend
     ports:
       - "3000:3000"
