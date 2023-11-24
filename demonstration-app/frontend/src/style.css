@@ -4,8 +4,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Ensure bounding boxes don't interfere with video controls */
-    z-index: 1; /* Ensure the bounding box container is on top */
+    pointer-events: none;
+    z-index: 1;
   }
   
   .bounding-box {

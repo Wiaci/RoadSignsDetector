@@ -1,23 +1,49 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import "./style.css"
+import "../style.css"
 
 const VideoPlayer = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const boundingBoxesRef = useRef(null);
+  const [boundingBoxesPrev, setBoundingBoxesPrev] = useState([])
   const [boundingBoxes, setBoundingBoxes] = useState([]);
   const [response, setResponse] = useState(null)
   const [sum, setSum] = useState(0)
   const [num, setNum] = useState(0)
 
+  useEffect(() => {
+    const classesPrev = []
+    for (const box of boundingBoxesPrev) {
+      classesPrev.push(box.cls)
+    }
+
+    const classesToPrint = []
+    for (const box of boundingBoxes) {
+      if (!classesPrev.includes(box.cls)) {
+        classesToPrint.push({
+          cls: box.cls,
+          prob: box.prob
+        })
+      }
+    }
+
+    for (const cls of classesToPrint) {
+      console.log(cls.cls, cls.prob)
+    }
+
+    setBoundingBoxesPrev(boundingBoxes)
+  }, [boundingBoxes])
+
   const getBoxes = async () => {
     if (videoRef.current.src) {
-      const url = captureScreenshot() 
+      const url = captureScreenshot()
       var start = new Date().getTime();
+      console.time('wait')
       const response = await axios.post("http://localhost:8000/process-frame", {
           url: url
       })
+      console.timeEnd('wait')
       var end = new Date().getTime();
       setSum(sum + end - start)
       setNum(num + 1)
@@ -51,17 +77,15 @@ const VideoPlayer = () => {
       const ctx = canvas.getContext('2d')
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
       return canvas.toDataURL('image/png')
-
     }
   }
 
   useEffect(() => {
-    console.log("resp here")
     if(response) getBoxes()
   }, [response])
 
   const handleVideoChange = async (event) => {
-    console.log("Average on front: " + (sum / num))
+    console.log("*** Average on front: " + (sum / num))
     setSum(0)
     setNum(0)
     const resp = await axios.post("http://127.0.0.1:8000/get-average")
@@ -73,6 +97,7 @@ const VideoPlayer = () => {
     videoRef.current.play();
     videoRef.current.volume = 0
     getBoxes()
+    
   };
 
   useEffect(() => {
@@ -81,7 +106,7 @@ const VideoPlayer = () => {
     // Update the position and size of bounding boxes
     boundingBoxes.forEach((box, index) => {
       const { x, y, width, height, cls, prob } = box;
-      console.log(x, y, width, height, cls)
+      //console.log(x, y, width, height, cls)
 
       const boxElement = document.createElement('div');
       boxElement.classList.add('bounding-box');
@@ -107,7 +132,7 @@ const VideoPlayer = () => {
         <video ref={videoRef} controls/>
         {/* Отрисовка bounding boxes */}
         <div ref={boundingBoxesRef} className="bounding-boxes-container" />
-        <canvas ref={canvasRef} style={{ border: '1px solid black' }} />
+        <canvas ref={canvasRef} style={{ border: '1px solid black', display: 'none' }} />
       </div>
     </div>
   );
