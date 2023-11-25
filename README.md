@@ -36,8 +36,7 @@
 
 Для сравнения были выбраны и обучены на подготовленном наборе данных следующие модели:
 
-[**YOLOv8
-**](https://docs.ultralytics.com/ru/) ([краткое описание архитектуры тут](https://platinum-flame-ea1.notion.site/YOLOv8-0c49464a5f9d4fea9a76e5b18acd6fad))
+[**YOLOv8**](https://docs.ultralytics.com/ru/) ([краткое описание архитектуры тут](https://platinum-flame-ea1.notion.site/YOLOv8-0c49464a5f9d4fea9a76e5b18acd6fad))
 
 1) dataset 1, 100 эпох, батч 16![yolo_dataset1_100.png](demonstration-app%2Fplots%2Fyolo_dataset1_100.png)
    Качество на test:
@@ -87,47 +86,50 @@
 
 #### Фреймворки/библиотеки
 
-Для правильной работы наше приложение использует ряд фреймворков с открытым исходным кодом:
+Для правильной работы наше приложение использует ряд библиотек и фреймворков с открытым исходным кодом.
+
+Для клиентской части приложения:
 
 - [React](https://react.dev/reference/react)
+- [Axios](https://axios-http.com)
+
+Для серверной части приложения:
+
 - [Fastapi](https://fastapi.tiangolo.com/)
+- [Onnx](https://onnx.ai/onnx/)
 - [Onnxruntime](https://onnxruntime.ai/docs)
+- [Ultralytics](https://github.com/ultralytics/ultralytics) v8.0.215+ для запуска YOLOv8
 - [Uvicorn](https://www.uvicorn.org/)
-- [PyTorch](https://pytorch.org/docs)
-- [Ultralytics](https://github.com/ultralytics/ultralytics)
 
 #### Установка
 
-YOLOv8 требует [ultralytics](https://github.com/ultralytics/ultralytics) v8.0.215+ для запуска.
-
-Установка зависимостей и devDependencies и запуск сервера.
+Запуск клиентской части приложения:
 
 ```sh
-cd yolo
+cd demonstration-app/frontend
 npm i
-node app
+npm start
 ```
 
-For production environments...
+Запуск серверной части приложения:
 
 ```sh
-npm install --production
-NODE_ENV=production node app
+cd demonstration-app/backend
+pip install -r requirements.txt
+uvicorn main:app
 ```
-
 #### Docker
 
-Наша модель проста в установке и деплое в Докер контейнере.
+Наша модель проста в установке и деплое в docker-контейнере.
 
-Для работы приложения надо освободить 3000 и 8000 порты. Когда все будет готово, просто используйте Dockerfile для
-построения образа.
+Для работы приложения надо освободить 3000 и 8000 порты.
+
+Развертывание приложения:
 
 ```sh
 cd demonstration-app
-docker compose up -d
+docker-compose up -d
 ```
-
-Развертывание приложения:
 
 Это подключит необходимые зависимости и проверьте развертывание, перейдя по адресу вашего сервера в предпочитаемом вами
 браузере http://localhost:3000.
