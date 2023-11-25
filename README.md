@@ -36,7 +36,7 @@
 
 Для сравнения были выбраны и обучены на подготовленном наборе данных следующие модели:
 
-[**YOLOv8**](https://docs.ultralytics.com/ru/) ([краткое описание архитектуры тут](https://platinum-flame-ea1.notion.site/YOLOv8-0c49464a5f9d4fea9a76e5b18acd6fad))
+**[YOLOv8]**(https://docs.ultralytics.com/ru/) ([краткое описание архитектуры тут](https://platinum-flame-ea1.notion.site/YOLOv8-0c49464a5f9d4fea9a76e5b18acd6fad))
 
 1) dataset 1, 100 эпох, батч 16![yolo_dataset1_100.png](model%2Fplots%2Fyolo_dataset1_100.png)
    Качество на test:
@@ -51,10 +51,10 @@
       |-----------|--------|--------|-----------|
    | 0.65      | 0.506  | 0.542  | 0.391     |
 
-Так как в датасете была изменена только train часть, то есть вероятность, что в общем случае можель начала работать
+Так как в датасете была изменена только train часть, то есть вероятность, что в общем случае модель начала работать
 лучше, но на конкретно этой test выборке чуть хуже.
 
-3) Был произведен поиск гиперпараметров lr0, lrf, momentum, weight_decay, warmup_epochs, warmup_momentum, box, clsс
+3) Был произведен поиск гиперпараметров lr0, lrf, momentum, weight_decay, warmup_epochs, warmup_momentum, box, cls с
    помощью Ray tune, но из-за продолжительного времени работы только на 20 эпохах. К сожалению, лучшего результата, чем
    были найдены, этот эксперимент не дал.
 4) dataset 1, 200 эпох, батч 64![yolo_dataset1_200.png](model%2Fplots%2Fyolo_dataset1_200.png)
@@ -67,7 +67,7 @@
 [**RTMDet**](https://github.com/open-mmlab/mmdetection/tree/main)
 
 1) 57 эпох. Так как начала переобучаться, мы решили подбирать регуляризацию.
-2) dataset1, 100 эпох, графики только на 70 эпох, потому что потом лосс начал расти.
+2) dataset1, 100 эпох, графики только для 70 эпох, потому что потом лосс начал расти.
    ![rtmdet_dataset1_70_loss.png](model%2Fplots%2Frtmdet_dataset1_70_loss.png)
    ![rtmdet_dataset1_70_mAP.png](model%2Fplots%2Frtmdet_dataset1_70_mAP.png)
    Качество на test:
@@ -131,12 +131,11 @@ cd demonstration-app
 docker-compose up -d
 ```
 
-Это подключит необходимые зависимости и проверьте развертывание, перейдя по адресу вашего сервера в предпочитаемом вами
-браузере http://localhost:3000.
-
 > Заметка: Убедитесь, что другие копии контейнеров не запущены. Используйте `docker ps` для вывода списка контейнеров
 > и `docker rm -f <ids>` для их удаления..
 
+Проверьте развертывание, перейдя по адресу вашего сервера в предпочитаемом вами
+браузере: http://localhost:3000.
 ```sh
 127.0.0.1:3000
 ```
@@ -208,4 +207,3 @@ docker-compose up -d
 **Sigma Intelligence**
 
    [russian-traffic-signs-recognition dataset]: <https://universe.roboflow.com/mguogareva/russian-traffic-signs-recognition/model/1>
->>>>>>> c2d1420d5a1eef7f8b733934ed7bf2b9c24b6f99
