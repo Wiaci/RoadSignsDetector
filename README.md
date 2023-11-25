@@ -1,6 +1,6 @@
 # Прототип помощника для водителей
 
-![val_batch0_labels.jpg](demonstration-app%2Fplots%2Fval_batch0_labels.jpg)
+![val_batch0_labels.jpg](model%2Fplots%2Fval_batch0_labels.jpg)
 > In the realm where pixels meet prudence,
 > 
 > traffic signs are the beacons of safety,
@@ -38,13 +38,13 @@
 
 [**YOLOv8**](https://docs.ultralytics.com/ru/) ([краткое описание архитектуры тут](https://platinum-flame-ea1.notion.site/YOLOv8-0c49464a5f9d4fea9a76e5b18acd6fad))
 
-1) dataset 1, 100 эпох, батч 16![yolo_dataset1_100.png](demonstration-app%2Fplots%2Fyolo_dataset1_100.png)
+1) dataset 1, 100 эпох, батч 16![yolo_dataset1_100.png](model%2Fplots%2Fyolo_dataset1_100.png)
    Качество на test:
 
    | Precision | Recall | mAP@50 | mAP@50-95 |
       |-----------|--------|--------|-----------|
    | 0.65      | 0.506  | 0.542  | 0.391     |
-2) dataset 2, 100 эпох, батч 16![yolo_dataset2_100.png](demonstration-app%2Fplots%2Fyolo_dataset2_100.png)
+2) dataset 2, 100 эпох, батч 16![yolo_dataset2_100.png](model%2Fplots%2Fyolo_dataset2_100.png)
    Качество на test:
 
    | Precision | Recall | mAP@50 | mAP@50-95 |
@@ -57,7 +57,7 @@
 3) Был произведен поиск гиперпараметров lr0, lrf, momentum, weight_decay, warmup_epochs, warmup_momentum, box, clsс
    помощью Ray tune, но из-за продолжительного времени работы только на 20 эпохах. К сожалению, лучшего результата, чем
    были найдены, этот эксперимент не дал.
-4) dataset 1, 200 эпох, батч 64![yolo_dataset1_200.png](demonstration-app%2Fplots%2Fyolo_dataset1_200.png)
+4) dataset 1, 200 эпох, батч 64![yolo_dataset1_200.png](model%2Fplots%2Fyolo_dataset1_200.png)
    Качество на test:
 
    | Precision | Recall | mAP@50 | mAP@50-95 |
@@ -68,8 +68,8 @@
 
 1) 57 эпох. Так как начала переобучаться, мы решили подбирать регуляризацию.
 2) dataset1, 100 эпох, графики только на 70 эпох, потому что потом лосс начал расти.
-   ![rtmdet_dataset1_70_loss.png](demonstration-app%2Fplots%2Frtmdet_dataset1_70_loss.png)
-   ![rtmdet_dataset1_70_mAP.png](demonstration-app%2Fplots%2Frtmdet_dataset1_70_mAP.png)
+   ![rtmdet_dataset1_70_loss.png](model%2Fplots%2Frtmdet_dataset1_70_loss.png)
+   ![rtmdet_dataset1_70_mAP.png](model%2Fplots%2Frtmdet_dataset1_70_mAP.png)
    Качество на test:
 
    | Precision | Recall | mAP@50 | mAP@50-95 |
