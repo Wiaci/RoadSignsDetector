@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import "../style.css"
+import { classToText } from './classes';
 
 const VideoPlayer = () => {
   const videoRef = useRef(null);
@@ -11,6 +12,8 @@ const VideoPlayer = () => {
   const [response, setResponse] = useState(null)
   const [sum, setSum] = useState(0)
   const [num, setNum] = useState(0)
+  const infoSize = 20
+  const [info, setInfo] = useState(Array(infoSize).fill(""))
 
   useEffect(() => {
     const classesPrev = []
@@ -21,19 +24,22 @@ const VideoPlayer = () => {
     const classesToPrint = []
     for (const box of boundingBoxes) {
       if (!classesPrev.includes(box.cls)) {
-        classesToPrint.push({
-          cls: box.cls,
-          prob: box.prob
-        })
+        classesToPrint.push(box.cls)
       }
     }
-
-    for (const cls of classesToPrint) {
-      console.log(cls.cls, cls.prob)
-    }
+    printToInfo(classesToPrint)
 
     setBoundingBoxesPrev(boundingBoxes)
   }, [boundingBoxes])
+
+  const printToInfo = (toPrint) => {
+    const infoCopy = [...info]
+    infoCopy.splice(0, toPrint.length)
+    for (const cls of toPrint) {
+      infoCopy.push(classToText(cls))
+    }
+    setInfo(infoCopy)
+  } 
 
   const getBoxes = async () => {
     if (videoRef.current.src) {
@@ -128,8 +134,11 @@ const VideoPlayer = () => {
   return (
     <div>
       <input type="file" accept="video/*" onChange={handleVideoChange} />
-      <div style={{ position: 'relative', zIndex: 1 }}>
+      <div style={{ position: 'relative', zIndex: 1 }} className='video'>
         <video ref={videoRef} controls/>
+        <table>
+          {info.map((message) => <tr>{message}</tr>)}
+        </table>
         {/* Отрисовка bounding boxes */}
         <div ref={boundingBoxesRef} className="bounding-boxes-container" />
         <canvas ref={canvasRef} style={{ border: '1px solid black', display: 'none' }} />

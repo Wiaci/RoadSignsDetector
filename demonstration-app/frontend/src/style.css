@@ -18,3 +18,11 @@
     font-size: small;
   }
   
+  table {
+    font-size: larger;
+    margin-left: 10px;
+  }
+
+  .video {
+    display: flex;
+  }
