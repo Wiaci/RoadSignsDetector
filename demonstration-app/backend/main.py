@@ -8,7 +8,7 @@ from ultralytics import YOLO
 from time import time
 
 app = FastAPI()
-model = YOLO("best.onnx")
+model = YOLO("best_yolo_experiment4.onnx")
 
 
 # CORS settings

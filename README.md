@@ -23,7 +23,7 @@
 
 ### 1. **Подготовка данных.**
 
-Был проведен поиск подходящих датасетов с фотографиями российских знаков, в результате которого было решено использовать
+Был проведен поиск и сравнение датасетов с фотографиями российских знаков, в результате которого было решено использовать
 датасет [russian-traffic-signs-recognition dataset] (далее dataset 1), так как он представляет собой
 репрезентативный набор данных с чёткими изображениями, к тому же, его можно скачать в разных форматах.
 
@@ -36,20 +36,20 @@
 
 Для сравнения были выбраны и обучены на подготовленном наборе данных следующие модели:
 
-**[YOLOv8]**(https://docs.ultralytics.com/ru/) ([краткое описание архитектуры тут](https://platinum-flame-ea1.notion.site/YOLOv8-0c49464a5f9d4fea9a76e5b18acd6fad))
+**[YOLOv8](https://docs.ultralytics.com/ru/)** ([краткое описание архитектуры тут](https://platinum-flame-ea1.notion.site/YOLOv8-0c49464a5f9d4fea9a76e5b18acd6fad))
 
-1) dataset 1, 100 эпох, батч 16![yolo_dataset1_100.png](model%2Fplots%2Fyolo_dataset1_100.png)
+1) dataset 1, 100 эпох, батч 16, optimizer Adam![yolo_dataset1_100.png](model%2Fplots%2Fyolo_dataset1_100.png)
    Качество на test:
 
    | Precision | Recall | mAP@50 | mAP@50-95 |
       |-----------|--------|--------|-----------|
-   | 0.65      | 0.506  | 0.542  | 0.391     |
-2) dataset 2, 100 эпох, батч 16![yolo_dataset2_100.png](model%2Fplots%2Fyolo_dataset2_100.png)
+   | 0.659     | 0.482  | 0.47   | 0.343     |
+2) dataset 2, 100 эпох, батч 16, optimizer Adam![yolo_dataset2_100.png](model%2Fplots%2Fyolo_dataset2_100.png)
    Качество на test:
 
    | Precision | Recall | mAP@50 | mAP@50-95 |
       |-----------|--------|--------|-----------|
-   | 0.65      | 0.506  | 0.542  | 0.391     |
+   | 0.647     | 0.418  | 0.437  | 0.307     |
 
 Так как в датасете была изменена только train часть, то есть вероятность, что в общем случае модель начала работать
 лучше, но на конкретно этой test выборке чуть хуже.
@@ -57,12 +57,12 @@
 3) Был произведен поиск гиперпараметров lr0, lrf, momentum, weight_decay, warmup_epochs, warmup_momentum, box, cls с
    помощью Ray tune, но из-за продолжительного времени работы только на 20 эпохах. К сожалению, лучшего результата, чем
    были найдены, этот эксперимент не дал.
-4) dataset 1, 200 эпох, батч 64![yolo_dataset1_200.png](model%2Fplots%2Fyolo_dataset1_200.png)
+4) dataset 1, 200 эпох, батч 64, optimizer Adam![yolo_dataset1_200.png](model%2Fplots%2Fyolo_dataset1_200.png)
    Качество на test:
 
    | Precision | Recall | mAP@50 | mAP@50-95 |
       |-----------|--------|--------|-----------|
-   | 0.65      | 0.506  | 0.542  | 0.391     |
+   | 0.698     | 0.454  | 0.524  | 0.389     |
 
 [**RTMDet**](https://github.com/open-mmlab/mmdetection/tree/main)
 
