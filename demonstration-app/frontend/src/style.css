@@ -26,3 +26,8 @@
   .video {
     display: flex;
   }
+
+  table {
+    background-color: gainsboro;
+    width: 800px;
+  }
