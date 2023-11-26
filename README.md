@@ -50,13 +50,14 @@
    | Precision | Recall | mAP@50 | mAP@50-95 |
    |-----------|--------|--------|-----------|
    | 0.647     | 0.418  | 0.437  | 0.307     |
+   
    Так как в датасете была изменена только train часть, то есть вероятность, что в общем случае модель начала работать
    лучше, но на конкретно этой test выборке чуть хуже.
 
-3) Был произведен поиск гиперпараметров lr0, lrf, momentum, weight_decay, warmup_epochs, warmup_momentum, box, cls с
+4) Был произведен поиск гиперпараметров lr0, lrf, momentum, weight_decay, warmup_epochs, warmup_momentum, box, cls с
    помощью Ray tune, но из-за продолжительного времени работы только на 20 эпохах. К сожалению, лучшего результата, чем
    были найдены, этот эксперимент не дал.
-4) dataset 1, 200 эпох, батч 64, optimizer Adam![yolo_dataset1_200.png](model%2Fplots%2Fyolo_dataset1_200.png)
+5) dataset 1, 200 эпох, батч 64, optimizer Adam![yolo_dataset1_200.png](model%2Fplots%2Fyolo_dataset1_200.png)
    Качество на test:
 
    | Precision | Recall | mAP@50 | mAP@50-95 |
