@@ -72,9 +72,9 @@
    ![rtmdet_dataset1_70_mAP.png](model%2Fplots%2Frtmdet_dataset1_70_mAP.png)
    Качество на test:
 
-   | Precision | Recall | mAP@50 | mAP@50-95 |
+   | bbox_mAP  | mAP_50 | mAP_75 |   mAP_m   |
    |-----------|--------|--------|-----------|
-   |           |        | 0.462  |           |
+   |  0.352    | 0.474  | 0.417  |  0.5430   |
 
 ### 4. **Развёртывание модели.**
 
