@@ -1,5 +1,0 @@
-outs:
-- md5: 3d17f8b9fe8568d6b3f6b8f795868a2a
-  size: 26982985
-  hash: md5
-  path: best_rtmdet_epoch_62.pth
