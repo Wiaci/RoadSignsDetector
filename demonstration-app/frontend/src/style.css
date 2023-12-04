@@ -31,3 +31,7 @@
     background-color: gainsboro;
     width: 800px;
   }
+
+  td {
+    height: 32px;
+  }

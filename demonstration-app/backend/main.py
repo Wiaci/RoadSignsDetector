@@ -28,9 +28,6 @@ app.add_middleware(
 class FrameData(BaseModel):
     url: str
 
-sum = 0
-num = 0
-
 @app.post("/process-frame")
 async def process_frame(url: FrameData):
     global sum, num
@@ -40,16 +37,6 @@ async def process_frame(url: FrameData):
     sum += tm
     num += 1
     return {"bounding_boxes": result}
-
-@app.post("/get-average")
-async def get_average():
-    global sum, num
-    if num == 0:
-        return 0
-    average = sum / num
-    sum = 0
-    num = 0
-    return average * 1000
 
 def detect(url):
     _, encoded_data = url.split(",", 1)

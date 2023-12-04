@@ -58,6 +58,7 @@ const VideoPlayer = () => {
         const lst = []
         for (let i = 0; i < bbx.length; i++) {
           let bx = bbx[i]
+          if (bx[4].endsWith("Polosa")) continue
           lst.push({
             x: bx[0],
             y: bx[1],
@@ -137,7 +138,9 @@ const VideoPlayer = () => {
       <div style={{ position: 'relative', zIndex: 1 }} className='video'>
         <video ref={videoRef} controls/>
         <table>
-          {info.map((message) => <tr>{message}</tr>)}
+            <tbody>
+              {info.map((message, i) => <tr key={i}><td>{message}</td></tr>)}
+            </tbody>
         </table>
         {/* Отрисовка bounding boxes */}
         <div ref={boundingBoxesRef} className="bounding-boxes-container" />
